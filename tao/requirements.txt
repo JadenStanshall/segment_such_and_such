@@ -1,0 +1,10 @@
+torch>=2.1.0
+torchvision
+segment-anything @ git+https://github.com/facebookresearch/segment-anything.git@main
+
+opencv-python
+numpy
+
+nvidia-tao>=5.5.1
+
+tqdm

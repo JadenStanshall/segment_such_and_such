@@ -1,0 +1,15 @@
+__pycache__/
+.venv/
+pytorch/src/results/
+tao/output/
+
+# intermediaries of dataset generation
+tao/data/raw_images/
+tao/data/resized_images/
+tao/data/sam_masks/
+tao/data/training_masks/
+
+tao/utils/weights/
+*.pth
+*.tlt
+*.log

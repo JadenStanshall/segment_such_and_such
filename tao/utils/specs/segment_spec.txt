@@ -1,0 +1,73 @@
+random_seed: 42
+model_config {
+  model_input_width: 368
+  model_input_height: 224
+  model_input_channels: 3
+  num_layers: 18
+  all_projections: True
+  arch: "resnet"
+  use_batch_norm: False
+  training_precision {
+    backend_floatx: FLOAT32
+  }
+}
+
+training_config {
+  batch_size: 2
+  epochs: 3
+  log_summary_steps: 10
+  checkpoint_interval: 2
+  loss: "cross_entropy"
+  learning_rate:0.0001
+  regularizer {
+    type: L2
+    weight: 2e-5
+  }
+  optimizer {
+    adam {
+      epsilon: 9.99999993923e-09
+      beta1: 0.899999976158
+      beta2: 0.999000012875
+    }
+  }
+  visualizer{
+    enabled: true
+  }
+}
+
+dataset_config {
+  dataset: "custom"
+  augment: False
+  augmentation_config {
+    spatial_augmentation {
+      hflip_probability : 0.5
+      vflip_probability : 0.5
+      crop_and_resize_prob : 0.5
+    }
+    brightness_augmentation {
+      delta: 0.2
+    }
+  }
+
+  input_image_type: "color"
+  train_images_path:"/workspace/tao/data/dataset/train/images"
+  train_masks_path:"/workspace/tao/data/dataset/train/masks"
+
+  val_images_path:"/workspace/tao/data/dataset/val/images"
+  val_masks_path:"/workspace/tao/data/dataset/val/masks"
+
+  test_images_path:"/workspace/tao/data/dataset/test/images"
+
+  data_class_config {
+    target_classes {
+      name: "background"
+      mapping_class: "background"
+      label_id: 0
+    }
+    target_classes {
+      name: "target"
+      mapping_class: "target"
+      label_id: 255
+    }
+  }
+}

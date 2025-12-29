@@ -1,0 +1,7 @@
+torch>=1.12
+torchvision
+numpy
+Pillow
+tqdm
+tensorboard
+matplotlib
